@@ -1,0 +1,106 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.signin"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="33" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:5:22-64
+12
+13    <permission
+13-->[androidx.core:core:1.9.0] C:\Users\jackm\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+14        android:name="com.example.signin.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+14-->[androidx.core:core:1.9.0] C:\Users\jackm\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+15        android:protectionLevel="signature" />
+15-->[androidx.core:core:1.9.0] C:\Users\jackm\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+16
+17    <uses-permission android:name="com.example.signin.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+17-->[androidx.core:core:1.9.0] C:\Users\jackm\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.9.0] C:\Users\jackm\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+18
+19    <application
+19-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:7:5-34:19
+20        android:name="com.example.signin.AppController"
+20-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:8:9-38
+21        android:allowBackup="true"
+21-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:9:9-35
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.9.0] C:\Users\jackm\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+23        android:dataExtractionRules="@xml/data_extraction_rules"
+23-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:10:9-65
+24        android:debuggable="true"
+25        android:extractNativeLibs="false"
+26        android:fullBackupContent="@xml/backup_rules"
+26-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:11:9-54
+27        android:icon="@mipmap/ic_launcher"
+27-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:12:9-43
+28        android:label="@string/app_name"
+28-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:13:9-41
+29        android:roundIcon="@mipmap/ic_launcher_round"
+29-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:14:9-54
+30        android:supportsRtl="true"
+30-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:15:9-35
+31        android:testOnly="true"
+32        android:theme="@style/Theme.SignIn"
+32-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:16:9-44
+33        android:usesCleartextTraffic="true" >
+33-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:17:9-44
+34        <activity
+34-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:19:9-21:40
+35            android:name="com.example.signin.ReadActivity"
+35-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:20:13-41
+36            android:exported="false" />
+36-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:21:13-37
+37        <activity
+37-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:22:9-24:40
+38            android:name="com.example.signin.RemoveAcctActivity"
+38-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:23:13-47
+39            android:exported="false" />
+39-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:24:13-37
+40        <activity
+40-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:25:9-33:20
+41            android:name="com.example.signin.SignInActivity"
+41-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:26:13-43
+42            android:exported="true" >
+42-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:27:13-36
+43            <intent-filter>
+43-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:28:13-32:29
+44                <action android:name="android.intent.action.MAIN" />
+44-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:29:17-69
+44-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:29:25-66
+45
+46                <category android:name="android.intent.category.LAUNCHER" />
+46-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:31:17-77
+46-->C:\Users\jackm\COMS309\ms_318\Experiments\jmkrause_experiments\2ExperimentB\Frontend\app\src\main\AndroidManifest.xml:31:27-74
+47            </intent-filter>
+48        </activity>
+49
+50        <provider
+50-->[androidx.emoji2:emoji2:1.2.0] C:\Users\jackm\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+51            android:name="androidx.startup.InitializationProvider"
+51-->[androidx.emoji2:emoji2:1.2.0] C:\Users\jackm\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+52            android:authorities="com.example.signin.androidx-startup"
+52-->[androidx.emoji2:emoji2:1.2.0] C:\Users\jackm\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+53            android:exported="false" >
+53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\jackm\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+54            <meta-data
+54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\jackm\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+55                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\jackm\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+56                android:value="androidx.startup" />
+56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\jackm\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+57            <meta-data
+57-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\jackm\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+58                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+58-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\jackm\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+59                android:value="androidx.startup" />
+59-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\jackm\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+60        </provider>
+61    </application>
+62
+63</manifest>

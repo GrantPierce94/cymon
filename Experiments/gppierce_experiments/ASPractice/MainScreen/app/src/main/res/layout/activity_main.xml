@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainScreen">
+
+    <Button
+        android:id="@+id/btnLeaderboards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leaderboards"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <Button
+        android:id="@+id/btnPartyCreator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Party Creator"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnLeaderboards"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnPartyCreator"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Button for Competitive Battle -->
+    <Button
+        android:id="@+id/btnCompetitiveBattle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Competitive Battle"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnBack"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Button for Party Chat -->
+    <Button
+        android:id="@+id/btnPartyChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Party Chat"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnCompetitiveBattle"
+        android:layout_marginTop="20dp"/>
+</RelativeLayout>

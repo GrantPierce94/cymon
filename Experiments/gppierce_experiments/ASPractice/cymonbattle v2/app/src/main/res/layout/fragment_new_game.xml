@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewGameFragment"
+    android:background="@drawable/main_page"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/newGame_constraintLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Pokemon Battle"
+            android:textColor="#CD0808"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="@id/newGame_constraintLay"
+            app:layout_constraintStart_toStartOf="@id/newGame_constraintLay"
+            app:layout_constraintTop_toTopOf="@id/newGame_constraintLay" />
+
+        <LinearLayout
+            android:id="@+id/linear_authors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/title_textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <TextView
+                android:id="@+id/created_by_text_view"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/created_by"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/author1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:text="Grant"
+                android:textColor="#FF9191"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/author2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:text="Jack"
+                android:textColor="#FF9191"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/author3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Danny"
+                android:layout_marginBottom="10dp"
+                android:textColor="#FF9191"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/author3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="David"
+                android:textColor="#FF9191"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/new_game_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/new_game"
+            android:backgroundTint="#000000"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

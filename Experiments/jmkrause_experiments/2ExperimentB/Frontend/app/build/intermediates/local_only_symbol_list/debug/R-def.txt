@@ -1,0 +1,34 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id background
+id main_button_advanceScreen
+id main_button_register
+id main_editText_email
+id main_editText_name
+id main_editText_password
+id main_textView_data
+id main_textView_error
+id remove_background
+id remove_button_delete
+id remove_editText_id
+id remove_textView_data
+layout activity_main
+layout activity_remove_acct
+mipmap ic_launcher
+mipmap ic_launcher_round
+string advance_button
+string app_name
+string delete_button
+string email_hint
+string id_hint
+string name_hint
+string password_hint
+string register_button
+style Base.Theme.SignIn
+style Theme.SignIn
+xml backup_rules
+xml data_extraction_rules

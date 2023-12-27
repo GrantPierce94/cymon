@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#901616"
+    tools:context=".TeamSelection">
+
+    <CheckBox
+        android:id="@+id/team_checkBox_charmander"
+        android:layout_width="195dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="109dp"
+        android:buttonTint="#FF5722"
+        android:fontFamily="monospace"
+        android:text="@string/charmander"
+        android:textAlignment="center"
+        android:textColor="#FEFEFE"
+        android:textSize="24sp"
+        app:buttonIconTint="#2196F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_button_continue" />
+
+    <CheckBox
+        android:id="@+id/team_checkBox_pikachu"
+        android:layout_width="195dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="108dp"
+        android:buttonTint="#FFEB3B"
+        android:fontFamily="monospace"
+        android:text="@string/pikachu"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_checkBox_charmander" />
+
+    <CheckBox
+        android:id="@+id/team_checkBox_eevee"
+        android:layout_width="195dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="111dp"
+        android:buttonTint="#8E5B3F"
+        android:fontFamily="monospace"
+        android:text="@string/eevee"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_checkBox_pikachu" />
+
+    <CheckBox
+        android:id="@+id/team_checkBox_mewtwo"
+        android:layout_width="195dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="108dp"
+        android:buttonTint="#9C27B0"
+        android:fontFamily="monospace"
+        android:text="@string/mewtwo"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_checkBox_eevee" />
+
+    <Button
+        android:id="@+id/team_button_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="60dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/team_title"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

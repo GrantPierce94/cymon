@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SignIn</string>
+    <string name="name_hint">Enter Name:</string>
+    <string name="email_hint">Enter Email:</string>
+    <string name="password_hint">Enter Password:</string>
+    <string name="register_button">Register User</string>
+    <string name="advance_button">Removal Screen</string>
+    <string name="id_hint">Enter ID:</string>
+    <string name="delete_button">Delete</string>
+</resources>

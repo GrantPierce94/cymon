@@ -1,0 +1,331 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Pokemon</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Model</a>
+</div>
+
+<h1>Coverage Summary for Class: Pokemon (SignIn.backend.Model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Pokemon</td>
+<td class="coverageStat">
+  <span class="percent">
+    22.6%
+  </span>
+  <span class="absValue">
+    (7/31)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    15.2%
+  </span>
+  <span class="absValue">
+    (7/46)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Pokemon$HibernateInstantiator$B8L1e00V</td>
+  </tr>
+  <tr>
+    <td class="name">Pokemon$HibernateProxy$4p7Sd1R2</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    22.6%
+  </span>
+  <span class="absValue">
+    (7/31)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    15.2%
+  </span>
+  <span class="absValue">
+    (7/46)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Model;
+&nbsp;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import SignIn.backend.Repository.GameRepository;
+&nbsp;import SignIn.backend.Repository.ItemRepository;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@Table(name = &quot;pokemon&quot;)
+&nbsp;public class Pokemon {
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    private Long id;
+&nbsp;
+&nbsp;    @ManyToOne(fetch = FetchType.LAZY)
+&nbsp;    @JoinColumn(name = &quot;player_id&quot;)
+&nbsp;    private Player player;
+&nbsp;
+&nbsp;    @Column(name = &quot;species&quot;)
+&nbsp;    private String species;
+&nbsp;
+&nbsp;    @Column(name = &quot;nickname&quot;)
+&nbsp;    private String nickName;
+&nbsp;
+&nbsp;    @Column(name = &quot;level&quot;)
+&nbsp;    private int level;
+&nbsp;
+&nbsp;    // Omitting image URLs and Bitmaps as they are not typically stored directly in databases.
+&nbsp;    // You would usually store URLs or references to where the images are stored.
+&nbsp;
+&nbsp;    @Column(name = &quot;base_experience_reward&quot;)
+&nbsp;    private int baseExperienceReward;
+&nbsp;
+&nbsp;    @Column(name = &quot;base_stat_attack&quot;)
+&nbsp;    private int baseStatAttack;
+&nbsp;
+&nbsp;    @Column(name = &quot;base_stat_defense&quot;)
+&nbsp;    private int baseStatDefense;
+&nbsp;
+&nbsp;    @Column(name = &quot;base_stat_hp&quot;)
+&nbsp;    private int baseStatHp;
+&nbsp;
+&nbsp;    @Column(name = &quot;base_stat_special_attack&quot;)
+&nbsp;    private int baseStatSpecialAttack;
+&nbsp;
+&nbsp;    @Column(name = &quot;base_stat_special_defense&quot;)
+&nbsp;    private int baseStatSpecialDefense;
+&nbsp;
+&nbsp;    @Column(name = &quot;base_stat_speed&quot;)
+&nbsp;    private int baseStatSpeed;
+&nbsp;
+&nbsp;    @Column(name = &quot;current_experience&quot;)
+&nbsp;    private float currentExperience;
+&nbsp;
+&nbsp;    @Column(name = &quot;is_dead&quot;)
+&nbsp;    private boolean isDead;
+&nbsp;
+<b class="nc">&nbsp;    public Pokemon(Long id, Player player, String species, String nickName, int level, int baseExperienceReward, int baseStatAttack, int baseStatDefense, int baseStatHp, int baseStatSpecialAttack, int baseStatSpecialDefense, int baseStatSpeed, float currentExperience, boolean isDead, List&lt;String&gt; types) {</b>
+<b class="nc">&nbsp;        this.id = id;</b>
+<b class="nc">&nbsp;        this.player = player;</b>
+<b class="nc">&nbsp;        this.species = species;</b>
+<b class="nc">&nbsp;        this.nickName = nickName;</b>
+<b class="nc">&nbsp;        this.level = level;</b>
+<b class="nc">&nbsp;        this.baseExperienceReward = baseExperienceReward;</b>
+<b class="nc">&nbsp;        this.baseStatAttack = baseStatAttack;</b>
+<b class="nc">&nbsp;        this.baseStatDefense = baseStatDefense;</b>
+<b class="nc">&nbsp;        this.baseStatHp = baseStatHp;</b>
+<b class="nc">&nbsp;        this.baseStatSpecialAttack = baseStatSpecialAttack;</b>
+<b class="nc">&nbsp;        this.baseStatSpecialDefense = baseStatSpecialDefense;</b>
+<b class="nc">&nbsp;        this.baseStatSpeed = baseStatSpeed;</b>
+<b class="nc">&nbsp;        this.currentExperience = currentExperience;</b>
+<b class="nc">&nbsp;        this.isDead = isDead;</b>
+<b class="nc">&nbsp;        this.types = types;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public Pokemon(){</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    // Relationships like moves and types can be more complex. Here&#39;s an example with types.
+&nbsp;    @ElementCollection
+&nbsp;    @CollectionTable(name = &quot;pokemon_types&quot;, joinColumns = @JoinColumn(name = &quot;pokemon_id&quot;))
+&nbsp;    @Column(name = &quot;type&quot;)
+&nbsp;    private List&lt;String&gt; types;
+&nbsp;
+&nbsp;    // Getters and setters for all fields
+&nbsp;
+&nbsp;    public Long getId() {
+<b class="nc">&nbsp;        return id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getSpecies() {
+<b class="fc">&nbsp;        return species;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getNickName() {
+<b class="fc">&nbsp;        return nickName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getLevel() {
+<b class="fc">&nbsp;        return level;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getBaseExperienceReward() {
+<b class="nc">&nbsp;        return baseExperienceReward;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getBaseStatAttack() {
+<b class="nc">&nbsp;        return baseStatAttack;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getBaseStatDefense() {
+<b class="nc">&nbsp;        return baseStatDefense;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getBaseStatHp() {
+<b class="nc">&nbsp;        return baseStatHp;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getBaseStatSpecialAttack() {
+<b class="nc">&nbsp;        return baseStatSpecialAttack;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getBaseStatSpecialDefense() {
+<b class="nc">&nbsp;        return baseStatSpecialDefense;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getBaseStatSpeed() {
+<b class="nc">&nbsp;        return baseStatSpeed;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public float getCurrentExperience() {
+<b class="nc">&nbsp;        return currentExperience;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isDead() {
+<b class="nc">&nbsp;        return isDead;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;String&gt; getTypes() {
+<b class="nc">&nbsp;        return types;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setId(Long id) {
+<b class="nc">&nbsp;        this.id = id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setSpecies(String species) {
+<b class="fc">&nbsp;        this.species = species;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setNickName(String nickName) {
+<b class="fc">&nbsp;        this.nickName = nickName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setLevel(int level) {
+<b class="fc">&nbsp;        this.level = level;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBaseExperienceReward(int baseExperienceReward) {
+<b class="nc">&nbsp;        this.baseExperienceReward = baseExperienceReward;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBaseStatAttack(int baseStatAttack) {
+<b class="nc">&nbsp;        this.baseStatAttack = baseStatAttack;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBaseStatDefense(int baseStatDefense) {
+<b class="nc">&nbsp;        this.baseStatDefense = baseStatDefense;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBaseStatHp(int baseStatHp) {
+<b class="nc">&nbsp;        this.baseStatHp = baseStatHp;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBaseStatSpecialAttack(int baseStatSpecialAttack) {
+<b class="nc">&nbsp;        this.baseStatSpecialAttack = baseStatSpecialAttack;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBaseStatSpecialDefense(int baseStatSpecialDefense) {
+<b class="nc">&nbsp;        this.baseStatSpecialDefense = baseStatSpecialDefense;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBaseStatSpeed(int baseStatSpeed) {
+<b class="nc">&nbsp;        this.baseStatSpeed = baseStatSpeed;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setCurrentExperience(float currentExperience) {
+<b class="nc">&nbsp;        this.currentExperience = currentExperience;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDead(boolean dead) {
+<b class="nc">&nbsp;        isDead = dead;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setTypes(List&lt;String&gt; types) {
+<b class="nc">&nbsp;        this.types = types;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPlayer(Player p) {
+<b class="nc">&nbsp;        this.player = p;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Add any business logic methods (like levelUp, calculateStats, etc.)
+&nbsp;    // ...
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>

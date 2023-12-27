@@ -1,0 +1,8 @@
+package com.example.sumon.androidvolley.utils;
+
+public class Const {
+	public static final String URL_JSON_OBJECT = "https://b7d03884-c169-43f2-b937-739be506aa06.mock.pstmn.io/users/1";
+	public static final String URL_JSON_ARRAY = "https://b7d03884-c169-43f2-b937-739be506aa06.mock.pstmn.io/users";
+	public static final String URL_STRING_REQ = "https://b7d03884-c169-43f2-b937-739be506aa06.mock.pstmn.io/users/1";
+	public static final String URL_IMAGE = "http://sharding.org/outgoing/temp/testimg3.jpg";
+}

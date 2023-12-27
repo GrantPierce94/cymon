@@ -1,0 +1,238 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > CyMon</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Model</a>
+</div>
+
+<h1>Coverage Summary for Class: CyMon (SignIn.backend.Model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CyMon</td>
+<td class="coverageStat">
+  <span class="percent">
+    5.9%
+  </span>
+  <span class="absValue">
+    (1/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    4.3%
+  </span>
+  <span class="absValue">
+    (1/23)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CyMon$HibernateInstantiator$vR2T5syg</td>
+  </tr>
+  <tr>
+    <td class="name">CyMon$HibernateProxy$fmjmYH0w</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    5.9%
+  </span>
+  <span class="absValue">
+    (1/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    4.3%
+  </span>
+  <span class="absValue">
+    (1/23)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Model;
+&nbsp;
+&nbsp;import SignIn.backend.Repository.PlayerRepository;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import lombok.Getter;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;
+&nbsp;@Entity
+&nbsp;public class CyMon {
+&nbsp;
+&nbsp;    //ID generation for each instance of item
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    private int id;
+&nbsp;
+&nbsp;    //mon name
+&nbsp;    private String name;
+&nbsp;
+&nbsp;    //mon hp
+&nbsp;    private double hp;
+&nbsp;
+&nbsp;    //current hp of mon
+&nbsp;    private double currentHp;
+&nbsp;
+&nbsp;    //death status of mon
+&nbsp;    private boolean dead;
+&nbsp;
+&nbsp;    //mon is currently being used by player in battle
+&nbsp;    private boolean battling;
+&nbsp;
+&nbsp;    // Establishing the relationship with Player
+&nbsp;    @ManyToOne
+&nbsp;    private Player player;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;    public CyMon(String name, double hp, boolean dead) {</b>
+<b class="nc">&nbsp;        this.name = name;</b>
+<b class="nc">&nbsp;        this.hp = hp;</b>
+<b class="nc">&nbsp;        this.currentHp = hp; //sets default current hp to max hp</b>
+<b class="nc">&nbsp;        this.dead = false;</b>
+<b class="nc">&nbsp;        this.battling = true;</b>
+<b class="nc">&nbsp;        this.player = null;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public CyMon(int id, double damage) {</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public CyMon() {</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    //GETTERS////////////
+&nbsp;
+&nbsp;    public int getId() {
+<b class="nc">&nbsp;        return id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getName() {
+<b class="nc">&nbsp;        return name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getHp() {
+<b class="nc">&nbsp;        return hp;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getCurrentHp() {
+<b class="nc">&nbsp;        return currentHp;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isDead() {
+<b class="nc">&nbsp;        return dead;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Player getPlayer() {
+<b class="nc">&nbsp;        return player;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public boolean isBattling() {return battling;}</b>
+&nbsp;
+&nbsp;
+&nbsp;    //SETTERS////////////////////////////////
+&nbsp;
+&nbsp;
+&nbsp;    public void setId(int id) {
+<b class="nc">&nbsp;        this.id = id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setName(String name) {
+<b class="nc">&nbsp;        this.name = name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setHp(double hp) {
+<b class="nc">&nbsp;        this.hp = hp;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setCurrentHp(double currenthp) {
+<b class="nc">&nbsp;        this.currentHp = currenthp;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDead(boolean dead) {
+<b class="nc">&nbsp;        this.dead = dead;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPlayer(Player player) {
+<b class="nc">&nbsp;        this.player = player;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public void setBattling(boolean status){ battling = status; }</b>
+&nbsp;
+&nbsp;    ////////////////////////////////////////////////
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>

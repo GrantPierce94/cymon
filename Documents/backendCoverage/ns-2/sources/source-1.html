@@ -1,0 +1,255 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ChatServer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ChatServer (SignIn.backend.Controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChatServer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (2/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    13.2%
+  </span>
+  <span class="absValue">
+    (10/76)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Controller;
+&nbsp;
+&nbsp;import SignIn.backend.Model.Party;
+&nbsp;import SignIn.backend.Model.Player;
+&nbsp;import jakarta.websocket.OnClose;
+&nbsp;import jakarta.websocket.OnError;
+&nbsp;import jakarta.websocket.OnMessage;
+&nbsp;import jakarta.websocket.OnOpen;
+&nbsp;import jakarta.websocket.Session;
+&nbsp;import jakarta.websocket.server.PathParam;
+&nbsp;import jakarta.websocket.server.ServerEndpoint;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.Hashtable;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;
+&nbsp;@ServerEndpoint(&quot;/chat/{chatName}/{username}&quot;)
+&nbsp;@Component
+&nbsp;public class ChatServer {
+<b class="fc">&nbsp;    private static Map&lt;Session, String&gt; sessionUsernameMap = new Hashtable();</b>
+<b class="fc">&nbsp;    private static Map&lt;String, Session&gt; usernameSessionMap = new Hashtable();</b>
+<b class="fc">&nbsp;    private static Map&lt;Session, Player&gt; sessionPlayerMap = new Hashtable&lt;&gt;();</b>
+<b class="fc">&nbsp;    private static Map&lt;Player, Session&gt; playerSessionMap = new Hashtable&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;    private final Logger logger = LoggerFactory.getLogger(ChatServer.class);</b>
+<b class="fc">&nbsp;    private static Party roomA = new Party(10, &quot;RoomA&quot;);</b>
+<b class="fc">&nbsp;    private static Party roomB = new Party(10, &quot;RoomB&quot;);</b>
+<b class="fc">&nbsp;    private static Party roomC = new Party(10, &quot;RoomC&quot;);</b>
+<b class="fc">&nbsp;    private static Party roomD = new Party(10, &quot;RoomC&quot;);</b>
+&nbsp;//    private static Party[] rooms = {roomA, roomB, roomC, roomD};
+&nbsp;
+<b class="fc">&nbsp;    public ChatServer() {</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnOpen
+&nbsp;    public void onOpen(Session session, @PathParam(&quot;chatName&quot;) String chatName, @PathParam(&quot;username&quot;) String username) throws IOException {
+<b class="nc">&nbsp;        this.logger.info(&quot;[onOpen] &quot; + username);</b>
+<b class="nc">&nbsp;        if (usernameSessionMap.containsKey(username)) {</b>
+<b class="nc">&nbsp;            session.getBasicRemote().sendText(&quot;Username already exists&quot;);</b>
+<b class="nc">&nbsp;            session.close();</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            Player p = new Player();</b>
+<b class="nc">&nbsp;            p.setName(username);</b>
+<b class="nc">&nbsp;            p.setParty(roomA);</b>
+<b class="nc">&nbsp;            roomA.addPlayer(p);</b>
+<b class="nc">&nbsp;            roomB.addPlayer(p);</b>
+<b class="nc">&nbsp;            roomC.addPlayer(p);</b>
+<b class="nc">&nbsp;            roomD.addPlayer(p);</b>
+&nbsp;
+<b class="nc">&nbsp;            sessionPlayerMap.put(session, p);</b>
+<b class="nc">&nbsp;            playerSessionMap.put(p, session);</b>
+<b class="nc">&nbsp;            sessionUsernameMap.put(session, username);</b>
+<b class="nc">&nbsp;            usernameSessionMap.put(username, session);</b>
+<b class="nc">&nbsp;            this.sendMessageToPArticularUser(username, &quot;Welcome to the chat server, &quot; + username);</b>
+<b class="nc">&nbsp;            this.broadcast(&quot;User: &quot; + username + &quot; has Joined the Chat&quot;, p.getParty());</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnMessage
+&nbsp;    public void onMessage(Session session, String message) throws IOException {
+<b class="nc">&nbsp;        String username = (String) sessionUsernameMap.get(session);</b>
+<b class="nc">&nbsp;        Player temp = sessionPlayerMap.get(session);</b>
+<b class="nc">&nbsp;        this.logger.info(&quot;[onMessage] &quot; + username + &quot;: &quot; + message);</b>
+<b class="nc">&nbsp;        if (message.startsWith(&quot;@&quot;)) {</b>
+<b class="nc">&nbsp;            String[] split_msg = message.split(&quot;\\s+&quot;);</b>
+<b class="nc">&nbsp;            StringBuilder actualMessageBuilder = new StringBuilder();</b>
+&nbsp;
+<b class="nc">&nbsp;            for (int i = 1; i &lt; split_msg.length; ++i) {</b>
+<b class="nc">&nbsp;                actualMessageBuilder.append(split_msg[i]).append(&quot; &quot;);</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            String destUserName = split_msg[0].substring(1);</b>
+<b class="nc">&nbsp;            String actualMessage = actualMessageBuilder.toString();</b>
+<b class="nc">&nbsp;            this.sendMessageToPArticularUser(destUserName, &quot;[DM from &quot; + username + &quot;]: &quot; + actualMessage);</b>
+<b class="nc">&nbsp;            this.sendMessageToPArticularUser(username, &quot;[DM from &quot; + username + &quot;]: &quot; + actualMessage);</b>
+<b class="nc">&nbsp;        } else if (message.startsWith(&quot;[switch]&quot;)) {</b>
+<b class="nc">&nbsp;            String[] msg = message.split(&quot;:&quot;);</b>
+<b class="nc">&nbsp;            String roomName = msg[1];</b>
+<b class="nc">&nbsp;            joinRoom(session, roomName);</b>
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            logger.info(&quot;[temp party]&quot; + temp.getParty().getPartyName());</b>
+<b class="nc">&nbsp;            this.broadcast(username + &quot;: &quot; + message, temp.getParty());</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnClose
+&nbsp;    public void onClose(Session session) throws IOException {
+<b class="nc">&nbsp;        String username = (String) sessionUsernameMap.get(session);</b>
+<b class="nc">&nbsp;        Player temp = sessionPlayerMap.get(session);</b>
+<b class="nc">&nbsp;        this.logger.info(&quot;[onClose] &quot; + username);</b>
+<b class="nc">&nbsp;        sessionUsernameMap.remove(session);</b>
+<b class="nc">&nbsp;        usernameSessionMap.remove(username);</b>
+<b class="nc">&nbsp;        this.broadcast(username + &quot; disconnected&quot;, temp.getParty());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnError
+&nbsp;    public void onError(Session session, Throwable throwable) {
+<b class="nc">&nbsp;        String username = (String) sessionUsernameMap.get(session);</b>
+<b class="nc">&nbsp;        this.logger.info(&quot;[onError]&quot; + username + &quot;: &quot; + throwable.getMessage());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void sendMessageToPArticularUser(String username, String message) {
+&nbsp;        try {
+<b class="nc">&nbsp;            ((Session) usernameSessionMap.get(username)).getBasicRemote().sendText(message);</b>
+<b class="nc">&nbsp;        } catch (IOException var4) {</b>
+<b class="nc">&nbsp;            this.logger.info(&quot;[DM Exception] &quot; + var4.getMessage());</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    private void joinRoom(Session session, String roomName) {
+<b class="nc">&nbsp;        Player temp = sessionPlayerMap.get(session);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (roomName.equals(&quot;BadgeBandits&quot;)) {</b>
+<b class="nc">&nbsp;            temp.setParty(roomA);</b>
+<b class="nc">&nbsp;        } else if (roomName.equals(&quot;GymGladiators&quot;)) {</b>
+<b class="nc">&nbsp;            temp.setParty(roomB);</b>
+<b class="nc">&nbsp;        } else if (roomName.equals(&quot;RocketRebels&quot;)) {</b>
+<b class="nc">&nbsp;            temp.setParty(roomC);</b>
+<b class="nc">&nbsp;        } else if (roomName.equals(&quot;CymonScholars&quot;)) {</b>
+<b class="nc">&nbsp;            temp.setParty(roomD);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        logger.info(&quot;[switch]&quot; + temp.getParty().getPartyName());</b>
+<b class="nc">&nbsp;        broadcast(temp.getName() + &quot; has joined the room.&quot;, temp.getParty());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private void broadcast(String message, Party p) {
+&nbsp;
+<b class="nc">&nbsp;        sessionPlayerMap.forEach((session, player) -&gt; {</b>
+<b class="nc">&nbsp;            if (player.getParty() == p) {</b>
+&nbsp;                try {
+<b class="nc">&nbsp;                    logger.info(&quot;[send]&quot; + message);</b>
+<b class="nc">&nbsp;                    session.getBasicRemote().sendText(message);</b>
+<b class="nc">&nbsp;                } catch (IOException var5) {</b>
+<b class="nc">&nbsp;                    this.logger.info(&quot;[Broadcast Exception] &quot; + var5.getMessage());</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>

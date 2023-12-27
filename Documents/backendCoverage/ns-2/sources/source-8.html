@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > PokemonController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Controller</a>
+</div>
+
+<h1>Coverage Summary for Class: PokemonController (SignIn.backend.Controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PokemonController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10.5%
+  </span>
+  <span class="absValue">
+    (2/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Controller;
+&nbsp;
+&nbsp;//import SignIn.backend.Model.CyMon;
+&nbsp;import SignIn.backend.Model.Pokemon;
+&nbsp;//import SignIn.backend.Repository.CyMonRepository;
+&nbsp;import SignIn.backend.Repository.PokemonRepository;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import SignIn.backend.Model.Player;
+&nbsp;import SignIn.backend.Model.Game;
+&nbsp;import SignIn.backend.Repository.PlayerRepository;
+&nbsp;import SignIn.backend.Repository.GameRepository;
+&nbsp;import org.json.JSONObject;
+&nbsp;
+&nbsp;
+&nbsp;import java.util.Iterator;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@RestController
+<b class="fc">&nbsp;public class PokemonController {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    PlayerRepository playerRepository;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    GameRepository gameRepository;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    PokemonRepository monRepository;
+&nbsp;
+<b class="fc">&nbsp;    private final Logger logger = LoggerFactory.getLogger(PlayerController.class);</b>
+&nbsp;
+&nbsp;
+&nbsp;    @PostMapping(&quot;/mon/{email}&quot;)
+&nbsp;    JSONObject addMon(@PathVariable String email, @RequestBody Pokemon mon) {
+<b class="nc">&nbsp;        Player p = playerRepository.findByEmail(email);</b>
+<b class="nc">&nbsp;        p.addMonster(mon);</b>
+<b class="nc">&nbsp;        mon.setPlayer(p);</b>
+<b class="nc">&nbsp;        playerRepository.save(p);</b>
+<b class="nc">&nbsp;        monRepository.save(mon);</b>
+<b class="nc">&nbsp;        JSONObject ret = new JSONObject();</b>
+<b class="nc">&nbsp;        ret.put(&quot;Species&quot;, mon.getSpecies());</b>
+<b class="nc">&nbsp;        ret.put(&quot;Nickname&quot;, mon.getNickName());</b>
+<b class="nc">&nbsp;        ret.put(&quot;PlayerEmail&quot;, p.getEmail());</b>
+<b class="nc">&nbsp;        return ret;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/mon/{email}&quot;)
+&nbsp;    Pokemon getMon(@PathVariable String email, @RequestBody String name) {
+<b class="nc">&nbsp;        Player p = playerRepository.findByEmail(email);</b>
+<b class="nc">&nbsp;        Pokemon ret = p.getMonster(name);</b>
+<b class="nc">&nbsp;        playerRepository.save(p);</b>
+<b class="nc">&nbsp;        return ret;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/mon/{email}&quot;)
+&nbsp;    void deleteMon(@PathVariable String email, @RequestBody String name) {
+<b class="nc">&nbsp;        Player p = playerRepository.findByEmail(email);</b>
+<b class="nc">&nbsp;        p.deleteMonster(name);</b>
+<b class="nc">&nbsp;        playerRepository.save(p);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>

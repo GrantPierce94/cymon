@@ -1,0 +1,274 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ItemController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ItemController (SignIn.backend.Controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ItemController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    36.4%
+  </span>
+  <span class="absValue">
+    (4/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    9.4%
+  </span>
+  <span class="absValue">
+    (6/64)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Controller;
+&nbsp;
+&nbsp;import SignIn.backend.Model.Item;
+&nbsp;import SignIn.backend.Repository.ItemRepository;
+&nbsp;import jakarta.websocket.*;
+&nbsp;import jakarta.websocket.server.PathParam;
+&nbsp;import jakarta.websocket.server.ServerEndpoint;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+&nbsp;import org.springframework.web.bind.annotation.PostMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestBody;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;import SignIn.backend.Repository.GameRepository;
+&nbsp;import org.json.JSONObject;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.data.domain.Sort;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;
+&nbsp;import SignIn.backend.Model.Player;
+&nbsp;import SignIn.backend.Model.Game;
+&nbsp;import SignIn.backend.Repository.PlayerRepository;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@ServerEndpoint(&quot;/item/{playerName}&quot;)
+&nbsp;@Component
+<b class="fc">&nbsp;public class ItemController {</b>
+&nbsp;
+&nbsp;    private static PlayerRepository playerRepository;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public void setPlayerRepository(PlayerRepository repo) { playerRepository = repo;}</b>
+&nbsp;
+&nbsp;    private static ItemRepository itemRepository;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public void setItemRepository(ItemRepository repo) { itemRepository = repo;}</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    private static Map&lt;Session, Player&gt; sessionPlayerMap = new Hashtable&lt;&gt;();</b>
+<b class="fc">&nbsp;    private static Map&lt;Player, Session&gt; playerSessionMap = new Hashtable&lt;&gt;();</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    private final Logger logger = LoggerFactory.getLogger(FriendController.class);</b>
+&nbsp;
+&nbsp;    @OnOpen
+&nbsp;    public void onOpen(Session session, @PathParam(&quot;playerName&quot;) String playerName) {
+<b class="nc">&nbsp;        if (!playerName.isEmpty()) {</b>
+<b class="nc">&nbsp;            logger.info(&quot;[Item onOpen] &quot; + playerName);</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                Player temp = playerRepository.findByEmail(playerName);</b>
+<b class="nc">&nbsp;                playerSessionMap.put(temp, session);</b>
+<b class="nc">&nbsp;                sessionPlayerMap.put(session, temp);</b>
+<b class="nc">&nbsp;                session.getBasicRemote().sendText(&quot;connected: &quot; + playerName);</b>
+<b class="nc">&nbsp;            } catch (Exception e) {</b>
+<b class="nc">&nbsp;                logger.info(&quot;[Item onOpen Error] &quot; + e.getMessage());</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @OnMessage
+&nbsp;    public void onMessage(Session session, String message) {
+<b class="nc">&nbsp;        logger.info(&quot;[onMessage] &quot; + message);</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            Player player = sessionPlayerMap.get(session);</b>
+<b class="nc">&nbsp;            if (message.contains(&quot;buy&quot;)) {</b>
+&nbsp;
+<b class="nc">&nbsp;                String[] m = message.split(&quot; &quot;);</b>
+<b class="nc">&nbsp;                String name = m[1]; //</b>
+<b class="nc">&nbsp;                int price = Integer.parseInt(name);</b>
+&nbsp;
+<b class="nc">&nbsp;                boolean canBuy = false;</b>
+&nbsp;
+<b class="nc">&nbsp;                if(player.getBalance() - price &gt;= 0){</b>
+<b class="nc">&nbsp;                    canBuy =  true;</b>
+&nbsp;                }
+&nbsp;
+<b class="nc">&nbsp;                if(canBuy){</b>
+<b class="nc">&nbsp;                    player.setBalance(player.getBalance() - price);</b>
+<b class="nc">&nbsp;                    playerRepository.save(player);</b>
+&nbsp;                }
+&nbsp;                else{
+<b class="nc">&nbsp;                    logger.info(&quot;Player cannot buy item&quot;);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                logger.info(&quot;&quot; + player.getBalance());</b>
+<b class="nc">&nbsp;                session.getBasicRemote().sendText(&quot;balance &quot; + player.getBalance());</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            else if(message.equals(&quot;getBalance&quot;)){</b>
+<b class="nc">&nbsp;                logger.info(&quot;&quot; + player.getBalance());</b>
+<b class="nc">&nbsp;                session.getBasicRemote().sendText(&quot;balance &quot; + player.getBalance());</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            logger.info(&quot;[Item Balance Update Error] &quot; + e.getMessage());</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnClose
+&nbsp;    public void close(Session session) {
+<b class="nc">&nbsp;        logger.info(&quot;Closed Item session: &quot; + session.getId());</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            sessionPlayerMap.remove(session);</b>
+<b class="nc">&nbsp;        } catch (NoSuchElementException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnError
+&nbsp;    public void onError(Session session, Throwable throwable) {
+<b class="nc">&nbsp;        logger.info(&quot;Error or disconnection from Item connection: &quot; + session.getId());</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            sessionPlayerMap.remove(session);</b>
+<b class="nc">&nbsp;        } catch (NoSuchElementException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        throwable.printStackTrace();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @param id player id
+&nbsp;     * @param item item to add
+&nbsp;     */
+&nbsp;    //adds item to specified player
+&nbsp;    @PostMapping(&quot;/item/{email}&quot;)
+&nbsp;    String addItem(@PathVariable String email, @RequestBody Item item) {
+&nbsp;        try {
+<b class="nc">&nbsp;            JSONObject itemSent = new JSONObject(item);</b>
+<b class="nc">&nbsp;            logger.info(itemSent.toString());</b>
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            logger.info(e.getMessage());</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        Player player = playerRepository.findByEmail(email);</b>
+<b class="nc">&nbsp;        player.addItem(item);</b>
+<b class="nc">&nbsp;        itemRepository.save(item);</b>
+<b class="nc">&nbsp;        playerRepository.save(player);</b>
+<b class="nc">&nbsp;        JSONObject obj = new JSONObject();</b>
+<b class="nc">&nbsp;        obj.put(&quot;name&quot;, item.getName());</b>
+<b class="nc">&nbsp;        return obj.toString();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @param id Player id
+&nbsp;     * @param item Item to fetch
+&nbsp;     * @return returns item of the name that you specified
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/item/{email}&quot;)
+&nbsp;    Item getItem(@PathVariable String email, @RequestBody Item item) {
+<b class="nc">&nbsp;        Player player = playerRepository.findByEmail(email);</b>
+<b class="nc">&nbsp;        return player.getItem(item);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/item/delete/{email}&quot;)
+&nbsp;    void deleteItem(@PathVariable String email, @RequestBody Item item) {
+<b class="nc">&nbsp;        Player player = playerRepository.findByEmail(email);</b>
+<b class="nc">&nbsp;        player.removeItem(item);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>

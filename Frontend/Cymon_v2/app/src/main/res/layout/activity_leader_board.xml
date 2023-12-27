@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A3A1A1"
+    tools:context=".LeaderBoard">
+
+    <EditText
+        android:id="@+id/main_editText_name"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text"
+        android:textColorHint="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/main_button_enterScore"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="20dp"
+        android:text="Add"
+        app:layout_constraintStart_toEndOf="@+id/main_editText_score"
+        app:layout_constraintTop_toBottomOf="@+id/main_button_go" />
+
+    <Button
+        android:id="@+id/main_button_go"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/create_button"
+        app:layout_constraintStart_toEndOf="@+id/main_editText_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/main_editText_score"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Score"
+        android:inputType="number"
+        android:textColorHint="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_editText_name" />
+
+    <Button
+        android:id="@+id/main_button_advanceToNxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="79dp"
+        android:layout_marginEnd="79dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/advance_button2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/main_button_showScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="135dp"
+        android:text="Show Scores"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_editText_score" />
+
+    <TextView
+        android:id="@+id/scoreBoard_data"
+        android:layout_width="236dp"
+        android:layout_height="316dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="76dp"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/main_button_advanceToNxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_button_showScores"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/leaderBoard_scoreTitle"
+        android:layout_width="155dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="208dp"
+        android:layout_marginBottom="13dp"
+        android:text="Top Scores:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scoreBoard_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_button_showScores" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

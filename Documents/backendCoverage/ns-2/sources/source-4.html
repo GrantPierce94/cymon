@@ -1,0 +1,223 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > GameSocketController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Controller</a>
+</div>
+
+<h1>Coverage Summary for Class: GameSocketController (SignIn.backend.Controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameSocketController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (4/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    18.2%
+  </span>
+  <span class="absValue">
+    (6/33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Controller;
+&nbsp;
+&nbsp;import SignIn.backend.Model.Game;
+&nbsp;import SignIn.backend.Model.Moves;
+&nbsp;import SignIn.backend.Model.Player;
+&nbsp;import SignIn.backend.Repository.GameRepository;
+&nbsp;import SignIn.backend.Repository.MovesRepository;
+&nbsp;import SignIn.backend.Repository.PlayerRepository;
+&nbsp;import SignIn.backend.Service.GameService;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import jakarta.websocket.*;
+&nbsp;import jakarta.websocket.server.PathParam;
+&nbsp;import jakarta.websocket.server.ServerEndpoint;
+&nbsp;import org.json.JSONObject;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;import org.springframework.stereotype.Controller;
+&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+&nbsp;import org.springframework.web.bind.annotation.PostMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestBody;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.lang.reflect.Array;
+&nbsp;import java.util.Hashtable;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@ServerEndpoint(&quot;/gamesocket/{playerEmail}&quot;)
+&nbsp;@Component
+&nbsp;public class GameSocketController {
+&nbsp;
+&nbsp;    private static PlayerRepository playerRepository;
+&nbsp;    private static GameRepository gameRepository;
+&nbsp;    private static MovesRepository movesRepository;
+&nbsp;
+&nbsp;    private static GameService gameService;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public void setPlayerRepository(PlayerRepository repo) { playerRepository = repo; }</b>
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public void setGameRepository(GameRepository repo) { gameRepository = repo; }</b>
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public void setMovesRepository(MovesRepository repo) { movesRepository = repo; }</b>
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public GameSocketController(GameService gService) {</b>
+<b class="fc">&nbsp;        gameService = gService;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    private final Logger logger = LoggerFactory.getLogger(GameSocketController.class);</b>
+&nbsp;
+<b class="nc">&nbsp;    public GameSocketController() {}</b>
+&nbsp;
+&nbsp;    //WebSocket event methods:
+&nbsp;
+&nbsp;    @OnOpen
+&nbsp;    public void onOpen(Session session, @PathParam(&quot;playerEmail&quot;) String playerEmail) {
+<b class="nc">&nbsp;        logger.info(&quot;[GameSocket onOpen] &quot; + playerEmail);</b>
+&nbsp;
+<b class="nc">&nbsp;        Player p = playerRepository.findByEmail(playerEmail);</b>
+<b class="nc">&nbsp;        gameService.getSessionPlayerMap().put(session, p);</b>
+<b class="nc">&nbsp;        gameService.getPlayerSessionMap().put(p, session);</b>
+<b class="nc">&nbsp;        gameService.getEmailPlayerMap().put(playerEmail, p);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnMessage
+&nbsp;    public void onMessage(Session session, String message) throws IOException {
+<b class="nc">&nbsp;        Player p = gameService.getSessionPlayerMap().get(session);</b>
+<b class="nc">&nbsp;        logger.info(&quot;[onMessage] &quot; + message + &quot; &quot; + p.getName());</b>
+&nbsp;
+&nbsp;        //&quot;[openGame]&quot; - add a Game that is currently happening to save Moves to it
+<b class="nc">&nbsp;        if (message.equals(&quot;[openGame]&quot;)) {</b>
+<b class="nc">&nbsp;            gameService.openActiveGame(p);</b>
+&nbsp;
+<b class="nc">&nbsp;        } else if (message.startsWith(&quot;[closeGame]&quot;)) {</b>
+<b class="nc">&nbsp;            String[] s = message.split(&quot;:&quot;);</b>
+<b class="nc">&nbsp;            String boolString = s[1].trim();</b>
+<b class="nc">&nbsp;            boolean gameResult = Boolean.parseBoolean(boolString);</b>
+&nbsp;
+<b class="nc">&nbsp;            gameService.closeActiveGame(p, gameResult);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnClose
+&nbsp;    public void close(Session session) {
+<b class="nc">&nbsp;        logger.info(&quot;[GameSocket close]&quot;);</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            session.close();</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            logger.info(&quot;[GS close] &quot; + &quot;error closing session&quot;);</b>
+<b class="nc">&nbsp;            logger.error(e.getMessage());</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @OnError
+&nbsp;    public void onError(Session session, Throwable throwable) {
+<b class="nc">&nbsp;        logger.info(&quot;[GS onError]&quot;);</b>
+<b class="nc">&nbsp;        throwable.printStackTrace();</b>
+<b class="nc">&nbsp;        logger.info(&quot;[msg]&quot; + throwable.getMessage());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PostMapping(&quot;/gamesocket/{playerEmail}&quot;)
+&nbsp;    public String postMove(@PathVariable String playerEmail, @RequestBody Moves move) {
+<b class="nc">&nbsp;        logger.info(&quot;[controller postMove called]&quot;);</b>
+<b class="nc">&nbsp;        JSONObject response = gameService.handleMoveMade(playerEmail, move);</b>
+<b class="nc">&nbsp;        return response.toString();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;//controller looks good and works on the server great work! -grant
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>

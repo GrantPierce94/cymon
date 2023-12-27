@@ -1,0 +1,231 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > GameService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Service</a>
+</div>
+
+<h1>Coverage Summary for Class: GameService (SignIn.backend.Service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameService</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (2/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    17.1%
+  </span>
+  <span class="absValue">
+    (6/35)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GameService$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (2/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    17.1%
+  </span>
+  <span class="absValue">
+    (6/35)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Service;
+&nbsp;
+&nbsp;import SignIn.backend.Model.Game;
+&nbsp;import SignIn.backend.Model.Moves;
+&nbsp;import SignIn.backend.Model.Player;
+&nbsp;import SignIn.backend.Repository.GameRepository;
+&nbsp;import SignIn.backend.Repository.MovesRepository;
+&nbsp;import SignIn.backend.Repository.PlayerRepository;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import jakarta.websocket.Session;
+&nbsp;import org.json.JSONObject;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.Hashtable;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;@Service
+<b class="fc">&nbsp;public class GameService {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private GameRepository gameRepository;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private MovesRepository movesRepository;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private PlayerRepository playerRepository;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Map that contains all session/player connections during this instance of the server running
+&nbsp;     */
+<b class="fc">&nbsp;    private static final Map&lt;Session, Player&gt; sessionPlayerMap = new Hashtable&lt;&gt;();</b>
+&nbsp;    /**
+&nbsp;     * Map that allows us to send a message to a certain client active on the server
+&nbsp;     */
+<b class="fc">&nbsp;    private static final Map&lt;Player, Session&gt; playerSessionMap = new Hashtable&lt;&gt;();</b>
+&nbsp;    /**
+&nbsp;     * Map that allows management and addition of moves to an active game
+&nbsp;     */
+<b class="fc">&nbsp;    private static final Map&lt;Player, Game&gt; playerGameMap = new Hashtable&lt;&gt;();</b>
+&nbsp;    /**
+&nbsp;     * Map that allows for just one instance of Player on the backend
+&nbsp;     */
+<b class="fc">&nbsp;    private static final Map&lt;String, Player&gt; emailPlayerMap = new Hashtable&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;    Logger logger = LoggerFactory.getLogger( GameService.class);</b>
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    public void openActiveGame(Player player) {
+&nbsp;
+<b class="nc">&nbsp;        Game g = gameRepository.save(new Game(player));</b>
+<b class="nc">&nbsp;        logger.info(&quot;[openActiveGame call]&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        player.addGame(g);</b>
+&nbsp;
+<b class="nc">&nbsp;        playerGameMap.put(player, g);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    public void closeActiveGame(Player p, boolean didPlayerWin) {
+<b class="nc">&nbsp;        logger.info(&quot;[closeActiveGame call]&quot;);</b>
+<b class="nc">&nbsp;        Game temp = playerGameMap.get(p);</b>
+&nbsp;
+<b class="nc">&nbsp;        temp.setStatusOfGame(didPlayerWin);</b>
+<b class="nc">&nbsp;        if (didPlayerWin) {</b>
+<b class="nc">&nbsp;            p.addWin();</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            p.addLoss();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Save the finished game to the player, remove from active games map
+<b class="nc">&nbsp;        p.addGame(temp);</b>
+<b class="nc">&nbsp;        p.addGamePlayed();</b>
+&nbsp;//        playerGameMap.remove(p, temp);
+<b class="nc">&nbsp;        gameRepository.save(temp);</b>
+<b class="nc">&nbsp;        playerRepository.save(p);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Save the move made by player &#39;p&#39;
+&nbsp;     * @param playerEmail - player which made the move
+&nbsp;     * @param m - move made by player
+&nbsp;     */
+&nbsp;    @Transactional
+&nbsp;    public JSONObject handleMoveMade(String playerEmail, Moves m) {
+<b class="nc">&nbsp;        logger.info(&quot;handleMoveMade&quot;);</b>
+<b class="nc">&nbsp;        Player temp = emailPlayerMap.get(playerEmail);</b>
+<b class="nc">&nbsp;        Game g = playerGameMap.get(temp);</b>
+&nbsp;
+<b class="nc">&nbsp;        m.setPlayer(temp);</b>
+<b class="nc">&nbsp;        m.setGame(g);</b>
+&nbsp;
+<b class="nc">&nbsp;        movesRepository.save(m);</b>
+<b class="nc">&nbsp;        g.addMoves(m);</b>
+&nbsp;
+<b class="nc">&nbsp;        JSONObject ret = new JSONObject();</b>
+<b class="nc">&nbsp;        ret.put(&quot;playerName&quot;, temp.getName());</b>
+<b class="nc">&nbsp;        ret.put(&quot;moveCount&quot;, g.getMoves().size());</b>
+<b class="nc">&nbsp;        ret.put(&quot;moveName&quot;, m.getName());</b>
+<b class="nc">&nbsp;        return ret;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Map&lt;Player, Session&gt; getPlayerSessionMap() {
+<b class="nc">&nbsp;        return playerSessionMap;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Map&lt;Session, Player&gt; getSessionPlayerMap() {
+<b class="nc">&nbsp;        return sessionPlayerMap;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public Map&lt;String, Player&gt; getEmailPlayerMap() { return emailPlayerMap; }</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>

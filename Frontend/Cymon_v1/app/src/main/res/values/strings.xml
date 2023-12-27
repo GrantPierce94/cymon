@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">BattleParty</string>
+    <string name="name_hint">Enter Name:</string>
+    <string name="email_hint">Enter Email:</string>
+    <string name="password_hint">Enter Password:</string>
+    <string name="register_button">Register User</string>
+    <string name="advance_button">Removal Screen</string>
+    <string name="id_hint">Enter ID:</string>
+    <string name="delete_button">Delete</string>
+    <string name="name_hint2">Enter name:</string>
+    <string name="score_hint">Enter score:</string>
+    <string name="create_button">Create</string>
+    <string name="score_button">Add Score</string>
+    <string name="advance_button2">Advance to Update Data Activity</string>
+    <string name="advance_id">Enter Player id</string>
+    <string name="advance_score">Enter score to save</string>
+    <string name="score_remove_button">Remove Score</string>
+
+</resources>

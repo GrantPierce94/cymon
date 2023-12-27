@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_active"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/mainscreen"
+    tools:context=".MainScreen">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="2"
+        android:columnCount="2"
+        android:alignmentMode="alignMargins"
+        android:layout_centerInParent="true"
+        android:rowOrderPreserved="false"
+        android:columnOrderPreserved="false">
+
+        <Button
+            android:id="@+id/btnFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Friends" />
+
+        <Button
+            android:id="@+id/btnLeaderboards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Leaderboards" />
+
+        <Button
+            android:id="@+id/btnStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Store" />
+
+        <Button
+            android:id="@+id/btnPartyCreator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Party Creator" />
+
+
+        <Button
+            android:id="@+id/cymonBattleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Battle" />
+
+        <Button
+            android:id="@+id/btnActiveParty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Join Existing Party" />
+
+        <!-- Add the Party Chat button below -->
+        <Button
+            android:id="@+id/btnPartyChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Party Chat" />
+        <!-- Add an empty Space in the middle -->
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Back" />
+
+
+    </GridLayout>
+</RelativeLayout>
+
+

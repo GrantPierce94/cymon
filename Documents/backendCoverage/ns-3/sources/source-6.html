@@ -1,0 +1,324 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Player</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Model</a>
+</div>
+
+<h1>Coverage Summary for Class: Player (SignIn.backend.Model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Player</td>
+<td class="coverageStat">
+  <span class="percent">
+    67.6%
+  </span>
+  <span class="absValue">
+    (23/34)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    51.5%
+  </span>
+  <span class="absValue">
+    (34/66)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Player$HibernateInstantiator$IVgKt4pA</td>
+  </tr>
+  <tr>
+    <td class="name">Player$HibernateProxy$9ZmptCuG</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    67.6%
+  </span>
+  <span class="absValue">
+    (23/34)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    51.5%
+  </span>
+  <span class="absValue">
+    (34/66)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Model;
+&nbsp;
+&nbsp;import SignIn.backend.Repository.GameRepository;
+&nbsp;import SignIn.backend.Repository.ItemRepository;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Entity
+&nbsp;public class Player {
+&nbsp;
+&nbsp;    //Id generation for each player instance
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    private Long id;
+&nbsp;
+&nbsp;    // Defining list of friends associated with a player
+<b class="fc">&nbsp;    @ManyToMany</b>
+&nbsp;    private List&lt;Player&gt; friends = new ArrayList&lt;&gt;();
+&nbsp;
+&nbsp;    // Defining list of games associated with a player
+&nbsp;    @OneToMany(mappedBy = &quot;player&quot;, cascade = CascadeType.ALL)
+&nbsp;    private List&lt;Game&gt; games;
+&nbsp;
+&nbsp;    // Defining the list of items associated with a player
+<b class="fc">&nbsp;    @OneToMany(mappedBy = &quot;player&quot;, cascade = CascadeType.ALL)</b>
+&nbsp;    private List&lt;Item&gt; items = new ArrayList&lt;&gt;();
+&nbsp;
+<b class="fc">&nbsp;    @OneToMany(mappedBy = &quot;player&quot;, cascade = CascadeType.ALL, orphanRemoval = true)</b>
+&nbsp;    private List&lt;Pokemon&gt; pokemons = new ArrayList&lt;&gt;();
+&nbsp;
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;party_id&quot;)
+&nbsp;    Party party;
+&nbsp;
+&nbsp;
+&nbsp;    private String name; //name of player
+&nbsp;    private String email; //email for player account
+&nbsp;    private String password; //password for player account
+&nbsp;    private int gamesPlayed; //games played by player
+&nbsp;    private int wins;
+&nbsp;    private int losses;
+&nbsp;
+&nbsp;    private int balance;
+&nbsp;
+<b class="nc">&nbsp;    public Player(String name) {</b>
+<b class="nc">&nbsp;        this.email = name;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public Player(String name, String email, String password) {</b>
+<b class="fc">&nbsp;        this.name = name;</b>
+<b class="fc">&nbsp;        this.email = email;</b>
+<b class="fc">&nbsp;        this.password = password;</b>
+<b class="fc">&nbsp;        this.items = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.balance = 100;</b>
+<b class="fc">&nbsp;        this.wins = 0;</b>
+<b class="fc">&nbsp;        this.losses = 0;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public void addLoss() { losses+=1; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public void addWin() { wins += 1; }</b>
+&nbsp;
+<b class="fc">&nbsp;    public int getWins() { return wins; }</b>
+&nbsp;
+<b class="fc">&nbsp;    public int getLosses() { return losses; }</b>
+&nbsp;
+&nbsp;    public void setParty(Party party) {
+<b class="fc">&nbsp;        this.party = party;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public Party getParty() { return party; }</b>
+&nbsp;
+<b class="fc">&nbsp;    public Player() {</b>
+<b class="fc">&nbsp;        this.balance = 100;</b>
+<b class="fc">&nbsp;        this.items = new ArrayList&lt;&gt;();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addGamePlayed() {
+<b class="nc">&nbsp;        this.gamesPlayed += 1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getGamesPlayed() {
+<b class="fc">&nbsp;        return gamesPlayed;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setGamesPlayed(int n) {
+<b class="fc">&nbsp;        this.gamesPlayed += n;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setName(String name) {
+<b class="fc">&nbsp;        this.name = name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getName() {
+<b class="fc">&nbsp;        return name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setId(Long id) {
+<b class="fc">&nbsp;        this.id = id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Long getId() {
+<b class="fc">&nbsp;        return id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;Game&gt; getGames() {
+<b class="fc">&nbsp;        return games;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addGame(Game game) {
+<b class="nc">&nbsp;        if (this.games == null) {</b>
+<b class="nc">&nbsp;            games = new ArrayList&lt;&gt;();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        games.add(game);</b>
+<b class="nc">&nbsp;        game.setPlayer(this);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Getter for items list
+&nbsp;    public List&lt;Item&gt; getItems() {
+<b class="fc">&nbsp;        return items;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Setter for items list
+&nbsp;    public void setItems(List&lt;Item&gt; items) {
+<b class="fc">&nbsp;        this.items = items;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Method to add an item to a player&#39;s list of items
+&nbsp;    public void addItem(Item item) {
+<b class="nc">&nbsp;        items.add(item);</b>
+<b class="nc">&nbsp;        item.setPlayer(this);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Get specific item
+&nbsp;    public Item getItem(Item item) {
+<b class="nc">&nbsp;        String name = item.getName();</b>
+&nbsp;
+<b class="nc">&nbsp;        for(int i = 0; i &lt;= items.size(); i++){</b>
+<b class="nc">&nbsp;            if(name.equals(items.get(i).getName())){</b>
+<b class="nc">&nbsp;                return items.get(i);</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Get specific item
+&nbsp;    public void removeItem(Item item) {
+<b class="nc">&nbsp;        String name = item.getName();</b>
+&nbsp;
+<b class="nc">&nbsp;        for(int i = 0; i &lt;= items.size(); i++){</b>
+<b class="nc">&nbsp;            if(name.equals(items.get(i).getName())){</b>
+<b class="nc">&nbsp;                items.remove(i);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public void setEmail(String email) { this.email = email; }</b>
+&nbsp;
+<b class="fc">&nbsp;    public void setPassword(String password) { this.password = password; }</b>
+&nbsp;
+&nbsp;
+&nbsp;    public int getBalance() {
+<b class="fc">&nbsp;        return balance;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBalance(int balance) {
+<b class="fc">&nbsp;        this.balance = balance;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public String getEmail() { return email; }</b>
+&nbsp;
+<b class="fc">&nbsp;    public String getPassword() { return password; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public void addFriend(Player player) { friends.add(player); }</b>
+&nbsp;
+<b class="fc">&nbsp;    public List&lt;Player&gt; getFriends() { return friends; }</b>
+&nbsp;
+&nbsp;    public void addMonster(Pokemon mon){
+<b class="nc">&nbsp;        this.pokemons.add(mon);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Pokemon getMonster(String name){
+<b class="nc">&nbsp;        Pokemon ret = null;</b>
+<b class="nc">&nbsp;        for(Pokemon f: pokemons){</b>
+<b class="nc">&nbsp;            if(f.getNickName().equals(name)){</b>
+<b class="nc">&nbsp;                ret = f;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return ret;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void deleteMonster(String name){
+&nbsp;
+<b class="nc">&nbsp;        for(Pokemon f: pokemons){</b>
+<b class="nc">&nbsp;            if(f.getNickName().equals(name)){</b>
+<b class="nc">&nbsp;                this.pokemons.remove(f);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>

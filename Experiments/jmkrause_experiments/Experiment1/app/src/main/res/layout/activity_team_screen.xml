@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamScreen_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#23FFFFFF"
+    tools:context=".TeamScreen"
+    tools:layout_editor_absoluteX="-39dp"
+    tools:layout_editor_absoluteY="0dp"
+    tools:visibility="visible">
+
+    <ImageView
+        android:id="@+id/team_imageView_charmander"
+        android:layout_width="155dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team_imageView_mewtwo"
+        app:srcCompat="@drawable/charmander" />
+
+    <ImageView
+        android:id="@+id/team_imageView_mewtwo"
+        android:layout_width="155dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/team_imageView_charmander"
+        app:layout_constraintStart_toEndOf="@+id/team_imageView_eevee"
+        app:srcCompat="@drawable/download" />
+
+    <ImageView
+        android:id="@+id/team_imageView_eevee"
+        android:layout_width="155dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/team_imageView_mewtwo"
+        app:layout_constraintStart_toEndOf="@+id/team_imageView_pikachu"
+        app:srcCompat="@drawable/eevee" />
+
+    <ImageView
+        android:id="@+id/team_imageView_pikachu"
+        android:layout_width="155dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/team_imageView_eevee"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/pikachu" />
+
+    <TextView
+        android:id="@+id/team_textView_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="364dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="364dp"
+        android:text="TextView"
+        android:textSize="96sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

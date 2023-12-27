@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="team_title">Select a Fighter:</string>
+    <string name="charmander">Charmander</string>
+    <string name="pikachu">Pikachu</string>
+    <string name="eevee">Eevee</string>
+    <string name="mewtwo">Mewtwo</string>
+</resources>

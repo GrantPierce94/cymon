@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/battle_nav_graph"
+    app:startDestination="@id/mainBattleMenuFragment">
+
+    <fragment
+        android:id="@+id/mainBattleMenuFragment"
+        android:name="com.example.cymonbattle.battle.MainBattleMenuFragment"
+        android:label="MainBattleMenuFragment" >
+        <action
+            android:id="@+id/action_mainBattleMenuFragment_to_fightMenuFragment"
+            app:destination="@id/fightMenuFragment" />
+        <action
+            android:id="@+id/action_mainBattleMenuFragment_to_choosePokemonFragment"
+            app:destination="@id/choosePokemonFragment" />
+        <action
+            android:id="@+id/action_mainBattleMenuFragment_to_itemMenuFragment"
+            app:destination="@id/itemMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fightMenuFragment"
+        android:name="com.example.cymonbattle.battle.FightMenuFragment"
+        android:label="fragment_fight_menu"
+        tools:layout="@layout/fragment_fight_menu" >
+        <action
+            android:id="@+id/action_fightMenuFragment_to_mainBattleMenuFragment"
+            app:destination="@id/mainBattleMenuFragment" />
+        <action
+            android:id="@+id/action_fightMenuFragment_to_choosePokemonFragment"
+            app:destination="@id/choosePokemonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemMenuFragment"
+        android:name="com.example.cymonbattle.battle.ItemMenuFragment"
+        android:label="fragment_item_menu"
+        tools:layout="@layout/fragment_item_menu" >
+        <action
+            android:id="@+id/action_itemMenuFragment_to_mainBattleMenuFragment"
+            app:destination="@id/mainBattleMenuFragment" />
+        <action
+            android:id="@+id/action_itemMenuFragment_to_choosePokemonFragment"
+            app:destination="@id/choosePokemonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choosePokemonFragment"
+        android:name="com.example.cymonbattle.battle.ChoosePokemonFragment"
+        android:label="fragment_choose_pokemon"
+        tools:layout="@layout/fragment_choose_pokemon" >
+        <action
+            android:id="@+id/action_choosePokemonFragment_to_mainBattleMenuFragment"
+            app:destination="@id/mainBattleMenuFragment" />
+        <action
+            android:id="@+id/action_choosePokemonFragment_self"
+            app:destination="@id/choosePokemonFragment" />
+    </fragment>
+</navigation>

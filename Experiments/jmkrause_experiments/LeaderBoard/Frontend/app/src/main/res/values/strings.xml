@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Leaderboard</string>
+    <string name="name_hint">Enter name:</string>
+    <string name="score_hint">Enter score:</string>
+    <string name="create_button">Create</string>
+    <string name="score_button">Add Score</string>
+    <string name="advance_button">Advance to Update Data Activity</string>
+    <string name="advance_id">Enter Player id</string>
+    <string name="advance_score">Enter score to save</string>
+    <string name="score_remove_button">Remove Score</string>
+</resources>

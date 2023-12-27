@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/pokemonImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/pikachu" />
+
+    <TextView
+        android:id="@+id/pokemonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pokemonImage"
+        android:layout_centerHorizontal="true"
+        android:text="Pikachu"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/enemyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pokemonName"
+        android:layout_centerHorizontal="true"
+        android:text="Enemy"
+        android:textSize="24sp" />
+
+    <ProgressBar
+        android:id="@+id/pokemonHP"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enemyName"
+        android:layout_centerHorizontal="true"
+        android:max="100"
+        android:progress="100" />
+
+    <ProgressBar
+        android:id="@+id/enemyHP"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pokemonHP"
+        android:layout_centerHorizontal="true"
+        android:max="100"
+        android:progress="100" />
+
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/attack1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attack 1" />
+
+            <Button
+                android:id="@+id/attack2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attack 2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <Button
+                android:id="@+id/attack3Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attack 3" />
+
+            <Button
+                android:id="@+id/attack4Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attack 4" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

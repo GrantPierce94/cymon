@@ -1,0 +1,218 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Moves</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">SignIn.backend.Model</a>
+</div>
+
+<h1>Coverage Summary for Class: Moves (SignIn.backend.Model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Moves</td>
+<td class="coverageStat">
+  <span class="percent">
+    14.3%
+  </span>
+  <span class="absValue">
+    (1/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    22.2%
+  </span>
+  <span class="absValue">
+    (2/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Moves$HibernateInstantiator$BpEhBQvM</td>
+  </tr>
+  <tr>
+    <td class="name">Moves$HibernateProxy$rguTpRZk</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    14.3%
+  </span>
+  <span class="absValue">
+    (1/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    22.2%
+  </span>
+  <span class="absValue">
+    (2/9)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package SignIn.backend.Model;
+&nbsp;
+&nbsp;import jakarta.persistence.*;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import SignIn.backend.Repository.GameRepository;
+&nbsp;import SignIn.backend.Repository.ItemRepository;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@Table(name = &quot;move&quot;)
+<b class="fc">&nbsp;public class Moves {</b>
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    private Long id;
+&nbsp;
+&nbsp;    @Column(name = &quot;name&quot;)
+&nbsp;    private String name;
+&nbsp;
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;player_id&quot;)
+&nbsp;    private Player player;
+&nbsp;
+&nbsp;    @Column(name = &quot;level&quot;)
+&nbsp;    private int level;
+&nbsp;
+&nbsp;    @Column(name = &quot;category&quot;)
+&nbsp;    private String category;
+&nbsp;
+&nbsp;    @Column(name = &quot;damage_class&quot;)
+&nbsp;    private String damageClass;
+&nbsp;
+&nbsp;    @Column(name = &quot;target&quot;)
+&nbsp;    private String target;
+&nbsp;
+&nbsp;    @Column(name = &quot;type&quot;)
+&nbsp;    private String type;
+&nbsp;
+&nbsp;    @Column(name = &quot;accuracy&quot;)
+&nbsp;    private Integer accuracy; // nullable
+&nbsp;
+&nbsp;    @Column(name = &quot;heal&quot;)
+&nbsp;    private int heal;
+&nbsp;
+&nbsp;    @Column(name = &quot;power&quot;)
+&nbsp;    private Integer power; // nullable
+&nbsp;
+&nbsp;    @Column(name = &quot;pp&quot;)
+&nbsp;    private int pp;
+&nbsp;
+&nbsp;    @Column(name = &quot;ailment&quot;)
+&nbsp;    private String ailment;
+&nbsp;
+&nbsp;    @Column(name = &quot;ailment_chance&quot;)
+&nbsp;    private int ailmentChance;
+&nbsp;
+&nbsp;    @Transient // This value is derived and doesn&#39;t need to be stored in the database
+&nbsp;    private boolean isUsable;
+&nbsp;
+<b class="fc">&nbsp;    @Transient // maxPP is the same as pp, so it doesn&#39;t need a separate column</b>
+&nbsp;    private final int maxPP = pp;
+&nbsp;
+&nbsp;    @Transient // currentPP is a state that can change frequently and might not need persistence
+&nbsp;    private int currentPP;
+&nbsp;
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;game_id&quot;)
+&nbsp;    private Game game;
+&nbsp;
+&nbsp;    // Constructors, getters, setters, and other methods
+&nbsp;    // ...
+&nbsp;
+&nbsp;    @PostLoad // Method to set the transient fields after loading the entity from the database
+&nbsp;    private void onLoad() {
+<b class="nc">&nbsp;        this.isUsable = this.pp &gt; 0;</b>
+<b class="nc">&nbsp;        this.currentPP = this.maxPP;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Other business logic methods can be added as needed
+<b class="nc">&nbsp;    public void setPlayer(Player player) { this.player = player; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public Player getPlayer() { return player; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public String getName() { return name; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public void setGame(Game g) { this.game = g; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public Game getGame() { return game; }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-15 21:15</div>
+</div>
+</body>
+</html>
