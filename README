@@ -8,11 +8,63 @@ Cymon is an adventure game inspired by the popular Pokémon series. Embark on a 
 - **Training and Evolution**: Train your Cymons to become stronger and evolve into more powerful forms as they gain experience through battles and exploration.
 - **Exploration**: Explore diverse terrains, from lush forests to vast plains and mysterious caves, encountering different Cymon species in their natural habitats.
 - **Battles and Challenges**: Engage in strategic turn-based battles with wild Cymons and other trainers. Test your skills, develop winning strategies, and earn badges as you progress through various gyms.
-- **Quests and Storyline**: Embark on an epic adventure filled with quests, uncovering the mysteries of the Cymon world and encountering interesting characters along the way.
+- **Quests and Storyline**: Embark on an epic adventure filled with quests, uncovering the mysteries of the Cymon world, and encountering interesting characters along the way.
 - **Customization**: Customize your character's appearance, train Cymons based on your preferred playstyle, and build your ultimate team.
 
 ## Installation
 
-To play Cymon, follow these steps:
+### Frontend (Android Studio)
 
-1. **Clone the Repository**: Clone this repository to your local machine to begin use!
+To set up the frontend in Android Studio:
+
+1. **Clone the Repository**: Clone this repository to your local machine using Git or download the ZIP file.
+   
+2. **Open Project in Android Studio**: Launch Android Studio and select "Open an existing project." Navigate to the cloned repository's directory and open the `frontend` folder.
+
+3. **Install Dependencies**: Follow the instructions in the `frontend/README.md` file to install any necessary dependencies and libraries required to run the Android application.
+
+4. **Run the App**: Build and run the application using the Android Studio emulator or by connecting a physical device.
+
+### Backend (Server)
+
+The backend runs on a server to handle game logic, user data, and interactions. To set up the backend:
+
+1. **Server Requirements**: Ensure you have the necessary server environment (e.g., Node.js, Python, etc.) installed where the backend code will be hosted.
+
+2. **Clone the Backend Repository**: Clone the backend repository to your server or hosting environment using Git.
+
+3. **Install Backend Dependencies**: Follow the instructions in the backend repository's README to install dependencies and set up the server environment.
+
+4. **Run the Backend**: Start the backend server by executing the appropriate commands as specified in the backend's documentation.
+
+## How to Play
+
+In Cymon, battles are conducted in a turn-based style, similar to classic Pokémon games. Here are the typical controls and mechanics for battles:
+
+- **Move Selection**: Each Cymon has a set of moves or abilities they can use during battles. Players select moves from a list of available options.
+- **Turn-Based Actions**: Battles proceed in turns, with each participant taking actions one after the other.
+- **HP (Hit Points)**: Each Cymon has a certain amount of HP representing their health. Attacks reduce the opponent's HP, and the battle continues until one Cymon's HP reaches zero.
+- **Types and Effectiveness**: Cymons have different types (e.g., fire, water, grass), and move types can have advantages or disadvantages against specific Cymon types. For example, a water-type move might be super effective against a fire-type Cymon.
+- **Status Effects**: Moves may inflict status conditions (like paralysis, burn, poison) that affect a Cymon's performance in battle.
+- **Switching Cymons**: Players can switch their active Cymon during a battle to gain a type advantage or conserve a weakened Cymon.
+- **Battle Outcome**: The battle ends when all Cymons of one player are unable to continue battling. The victorious player earns rewards such as experience points, items, or currency.
+
+Understanding type matchups, strategic move selection, and managing Cymon stats during battles are key to achieving success in Cymon battles.
+
+These controls and mechanics contribute to the strategic depth and excitement of Cymon battles, offering a challenging and engaging gameplay experience.
+
+## Contributing
+
+We welcome contributions from the community! If you'd like to contribute to Cymon, please follow the guidelines outlined in CONTRIBUTING.md to get started.
+
+## Credits
+
+- **Developers**: Grant, Jack, Danny
+
+## Contact
+
+For any inquiries, feedback, or support regarding Cymon, feel free to contact us at cymon@gmail.com.
+
+---
+
+
