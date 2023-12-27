@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">BattleParty</string>
+    <string name="name_hint">Enter Name:</string>
+    <string name="email_hint">Enter Email:</string>
+    <string name="password_hint">Enter Password:</string>
+    <string name="register_button">Register User</string>
+    <string name="advance_button">Removal Screen</string>
+    <string name="id_hint">Enter ID:</string>
+    <string name="delete_button">Delete</string>
+    <string name="name_hint2">Enter name:</string>
+    <string name="score_hint">Enter score:</string>
+    <string name="create_button">Create</string>
+    <string name="score_button">Add Score</string>
+    <string name="advance_button2">Advance to Update Data Activity</string>
+    <string name="advance_id">Enter Player id</string>
+    <string name="advance_score">Enter score to save</string>
+    <string name="score_remove_button">Remove Score</string>
+
+    <!-- Cymon Battle Screen -->
+    <!-- Fight Menu -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fight">FIGHT</string>
+    <string name="pkmn">PKMN</string>
+    <string name="item">ITEM</string>
+    <string name="run">RUN</string>
+    <string name="use_item">Use Item</string>
+    <string name="poke_ball">Cymon BALL</string>
+    <string name="potion">POTION</string>
+    <string name="choose_pokemon">Choose Cymon</string>
+    <string name="hp">HP:</string>
+    <string name="show_level">L%1$s</string>
+
+
+    <!-- Main menu -->
+    <string name="main_menu_title">Cymon Battle</string>
+    <string name="mainMenubtn1">Wild Cymon</string>
+    <string name="mainMenubtn2">Trainer Battle</string>
+    <string name="mainMenubtn3">Cymon center</string>
+    <string name="mainMenubtn4">Change Team</string>
+    <string name="save_button">Save</string>
+
+    <!-- New Game -->
+    <string name="created_by">Created By:</string>
+    <string name="Grant">Grant</string>
+    <string name="Danny">Danny</string>
+    <string name="Jack">Jack</string>
+    <string name="David">David</string>
+    <string name="new_game">New Game</string>
+
+    <!-- starter Pokemon -->
+    <string name="choose_starter_textView1">Choose Your Cymon</string>
+    <string name="pokemon_one_image">PokemonOneImage</string>
+    <string name="pokemon_two_image">pokemonTwoImage</string>
+    <string name="pokemon_three_image">pokemonThreeImage</string>
+    <string name="charmander">Charmander</string>
+    <string name="bulbausaur">Bulbausaur</string>
+    <string name="squirtle">Squirtle</string>
+    <string name="choose_starter_editText1">Enter trainer name</string>
+    <string name="hint_nickname">Enter your cymon nickname</string>
+    <string name="button1_starter_pokemon">Create Trainer</string>
+
+    <!-- Pokemon Team Change -->
+    <string name="pokemon_image_desc">Cymon Image</string>
+    <string name="team">Team</string>
+    <string name="collection">Collection</string>
+    <string name="collection_is_empty">Cymon Collection is empty</string>
+    <string name="top_list_is_empty">Top List is Empty!</string>
+    <string name="bottom_list_is_empty">Bottom List is Empty!</string>
+    <string name="change_team_textView_team">Team</string>
+
+</resources>

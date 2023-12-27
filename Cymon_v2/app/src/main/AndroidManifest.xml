@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BattleParty"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.example.battleparty.Multiplayer.MultiPlayer"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.Friends"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.JoinExistingParty"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.EditScores"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.LeaderBoard"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.PlayerRemoval"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".battle.BattleActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.MainScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.battleparty.PlayerIDActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.BattleParty"
+            android:exported="false" />
+        <activity
+            android:name="com.example.battleparty.Store"
+            android:exported="false"></activity>
+        <activity
+            android:name="com.example.battleparty.PartyChat"
+            android:exported="false" />
+    </application>
+
+</manifest>

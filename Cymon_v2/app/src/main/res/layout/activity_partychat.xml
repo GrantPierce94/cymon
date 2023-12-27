@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="com.example.battleparty.PartyChat"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/chat_background"
+    android:orientation="vertical">
+
+    <!-- Username Input -->
+    <EditText
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:hint="username"
+        android:textSize="20sp"
+        android:id="@+id/et1" />
+
+    <!-- Room selection dropdown -->
+    <Spinner
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/spinner_room" />
+
+    <!-- Chat Messages -->
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/chat_messages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chat Messages:\n"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/chat_messages2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chat Messages:\n"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/chat_messages3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chat Messages:\n"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/chat_messages4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chat Messages:\n"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </ScrollView>
+
+    <!-- Chat Input Box -->
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Type your message..."
+        android:textSize="16sp"
+        android:id="@+id/message_input" />
+
+    <!-- Buttons Container (Horizontal Layout) -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Connect Button -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Connect"
+            android:backgroundTint="#FF0000"
+            android:id="@+id/bt1" />
+
+        <!-- Send Button -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Send"
+            android:backgroundTint="#FF0000"
+            android:id="@+id/bt2" />
+
+        <!-- Main Screen Button -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Main Screen"
+            android:backgroundTint="#FF0000"
+            android:id="@+id/bt3" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+

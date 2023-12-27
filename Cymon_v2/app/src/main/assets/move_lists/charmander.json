@@ -1,0 +1,30 @@
+[
+    {
+        "move": "scratch",
+        "level": 1
+    },
+    {
+        "move": "leer",
+        "level": 15
+    },
+    {
+        "move": "growl",
+        "level": 1
+    },
+    {
+        "move": "ember",
+        "level": 9
+    },
+    {
+        "move": "flamethrower",
+        "level": 38
+    },
+    {
+        "move": "fire-spin",
+        "level": 46
+    },
+    {
+        "move": "slash",
+        "level": 30
+    }
+]

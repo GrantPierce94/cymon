@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation.xml"
+    app:startDestination="@id/newGameFragment">
+
+    <fragment
+        android:id="@+id/newGameFragment"
+        android:name="com.example.cymonbattle.NewGameFragment"
+        android:label="fragment_new_game"
+        tools:layout="@layout/fragment_new_game" >
+        <action
+            android:id="@+id/action_newGameFragment_to_chooseStarterPokemonFragment"
+            app:destination="@id/chooseStarterPokemonFragment" />
+        <action
+            android:id="@+id/action_newGameFragment_to_fragment_main_menu"
+            app:destination="@id/fragment_main_menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseStarterPokemonFragment"
+        android:name="com.example.cymonbattle.ChooseStarterPokemonFragment"
+        android:label="fragment_choose_starter_pokemon"
+        tools:layout="@layout/fragment_choose_starter_pokemon" >
+        <action
+            android:id="@+id/action_chooseStarterPokemonFragment_to_fragment_main_menu"
+            app:destination="@id/fragment_main_menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_main_menu"
+        android:name="com.example.cymonbattle.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_fragment_main_menu_to_changeTeamFragment"
+            app:destination="@id/changeTeamFragment" />
+        <argument
+            android:name="user_trainer"
+            app:argType="com.example.cymonbattle.trainer.Trainer" />
+        <action
+            android:id="@+id/action_fragment_main_menu_to_battleActivity22"
+            app:destination="@id/battleActivity2" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeTeamFragment"
+        android:name="com.example.cymonbattle.teamList.ChangeTeamFragment"
+        android:label="fragment_change_team"
+        tools:layout="@layout/fragment_change_team" >
+        <argument android:name="user_trainer"
+            app:argType="com.example.cymonbattle.trainer.Trainer" />
+    </fragment>
+    <activity
+        android:id="@+id/battleActivity2"
+        android:name="com.example.cymonbattle.battle.BattleActivity"
+        android:label="activity_battle"
+        tools:layout="@layout/activity_battle" >
+        <argument
+            android:name="userTrainer"
+            app:argType="com.example.cymonbattle.trainer.Trainer" />
+    </activity>
+</navigation>
