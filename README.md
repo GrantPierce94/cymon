@@ -1,6 +1,6 @@
 # Cymon - A Turn-Based Creature Adventure Game (Full-Stack Java)
 
-**Cymon** is a full-stack, Pokémon-inspired adventure game that blends secure user interaction with dynamic, turn-based gameplay. Built with Android (Java) on the client side and Spring Boot (Java) on the backend, Cymon provides a persistent, real-time experience where players can explore environments, capture creatures, and battle using strategic mechanics — all while emphasizing secure architecture and responsible session handling.
+**Cymon** is a full-stack, Pokémon-inspired adventure game that blends secure user interaction with dynamic, turn-based gameplay. Built with Android (Java) on the client side and Spring Boot (Java) on the backend, Cymon provides a persistent, real-time experience where players can explore environments, capture creatures, and battle using strategic mechanics, all while emphasizing secure architecture and responsible session handling.
 
 This project was developed collaboratively under an Agile workflow, with distinct front-end, back-end, and game logic components. Security was integrated from the ground up, including proper authentication flows, scoped access control, and protections against common web threats.
 
@@ -27,7 +27,7 @@ This project was developed collaboratively under an Agile workflow, with distinc
   Players register and log in to persist their game progress and Cymon collections.
 
 - **Creature Capture & Evolution**  
-  Explore, encounter, and capture unique Cymons — each with distinct abilities and the potential to evolve.
+  Explore, encounter, and capture unique Cymons. Each with distinct abilities and the potential to evolve.
 
 - **Turn-Based Strategy Combat**  
   Engage in tactical battles using elemental matchups, move priorities, and game state transitions.
