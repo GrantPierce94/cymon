@@ -1,109 +1,122 @@
-Cymon - A Pokémon-Inspired Turn-Based Adventure Game
-Cymon is a full-stack adventure game inspired by the classic Pokémon series. Built using modern development practices, it features user authentication, dynamic Cymon capture and battles, and persistent progression across sessions.
+# Cymon - A Turn-Based Creature Adventure Game (Full-Stack Java)
 
-Features
-User Login & Authentication: Account creation and login system with persistent user sessions. Tracks progress, Cymon ownership, and battle history.
+Cymon is a full-stack, Pokémon-inspired adventure game that combines turn-based combat, creature capture, and persistent progression. Built using Android (Java) and Spring Boot (Java), this project simulates a secure, interactive game environment where users can explore, battle, and manage their custom team of Cymons.
 
-Cymon Capture and Training: Discover and collect a variety of Cymons with unique abilities and evolutions.
+The project was developed by a collaborative team following Agile methodology and includes authentication, secure backend integration, and real-time communication via WebSockets.
 
-Strategic Turn-Based Battles: Battle AI or other trainers using move selection, type matchups, and status effects.
+## Security Considerations
 
-Exploration and Worldbuilding: Navigate various environments, trigger events, and interact with in-game characters.
+- Authentication and Session Management  
+  Secure login system with password hashing and persistent sessions to prevent unauthorized access.
 
-Custom Team Building: Train and manage your team of Cymons for optimal performance in battles and quests.
+- Role-Based Authorization  
+  Server-side logic ensures players can only access and modify data tied to their user account.
 
-Architecture
-This is a full-stack application with frontend and backend separation.
+- Input Validation  
+  API endpoints are hardened with validation checks to protect against injection and malformed requests.
 
-Frontend
-Platform: Android (Java, Android Studio)
+- Transport Layer Consideration  
+  Designed with HTTPS and secure WebSocket protocols in mind to protect sensitive gameplay and user data.
 
-Key Features:
+## Features
 
-Navigation between login, exploration, and battle views
+- User Account System  
+  Players register and log in to maintain their Cymon collection and game progress.
 
-Real-time UI updates via WebSockets
+- Creature Capture and Evolution  
+  Discover and collect Cymons, each with unique abilities and potential evolutions.
 
-User-friendly interface styled for mobile gameplay
+- Turn-Based Combat  
+  Strategy-based battles with type matchups, move sets, and real-time interactions.
 
-Backend
-Language: Java (Spring Boot)
+- Exploration System  
+  Navigate a multi-zone environment and encounter dynamic in-game events.
 
-Database: MySQL (hosted locally or remotely)
+- Custom Team Building  
+  Players manage their roster of Cymons for optimized combat and quest progression.
 
-Functionality:
+## Architecture Overview
 
-Stores user profiles, Cymon stats, battle records
+Frontend  
+- Platform: Android (Java, Android Studio)  
+- UI: Navigation between login, map, and battle views  
+- Features: Responsive layouts, real-time updates via WebSocket
 
-WebSocket-based real-time communication for battles
+Backend  
+- Language: Java (Spring Boot)  
+- Database: MySQL  
+- API: RESTful endpoints for account, battle, and capture logic  
+- Real-Time: WebSocket support for live battles  
+- Security: Authentication, user scoping, and secure data handling
 
-RESTful API endpoints for game logic and user actions
+## Setup Instructions
 
-DevOps & Workflow
-CI/CD: Automated builds and deployments using GitHub Actions and local pipelines.
+### Android Client
 
-Version Control: Managed with Git and GitHub. Branching strategy followed Git Flow.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/GrantPierce94/cymon.git
+Open the frontend folder in Android Studio.
 
-Agile Methodology:
-
-Two-week sprints with user stories and retrospectives
-
-Trello used for backlog management and sprint tracking
-
-Team standups and code reviews during active development
-
-Installation
-Android Client
-Clone the repository:
-
-bash
-Copy
-Edit
-git clone https://github.com/GrantPierce94/cymon.git
-Open /frontend in Android Studio.
-
-Sync Gradle and run on emulator or physical device.
+Sync Gradle and run the app using an emulator or physical device.
 
 Backend Server
 Install Java 11+ and MySQL.
 
-Configure the database using provided schema scripts in /backend/sql/.
+Configure your MySQL instance using provided schema in /backend/sql/.
 
-Navigate to /backend and build the application:
+Navigate to /backend and run:
 
-bash
-Copy
-Edit
 ./gradlew build
 java -jar build/libs/cymon-server.jar
-How to Play
-Create an account and log in.
 
-Explore the game world to encounter Cymons.
+Project Structure
+├── frontend/              # Android client codebase
+│   ├── activities/        # Login, Battle, Map, Team UI
+│   ├── models/            # Cymon, Move, Battle logic classes
+│   └── utils/             # Game state and session management
+│
+├── backend/               # Spring Boot API server
+│   ├── controllers/       # REST endpoints
+│   ├── services/          # Game logic and battle resolution
+│   ├── repository/        # MySQL integration
+│   └── websocket/         # Real-time communication layer
+│
+├── sql/                   # DB setup scripts and schema
+└── README.md              # Project overview
 
-Capture, train, and battle your team in turn-based combat.
+Testing Approach
+Unit tests for battle logic, database persistence, and user management
 
-Progress through quests and gyms to become a top trainer.
+Integration tests for backend REST APIs
 
-Tech Stack
-Frontend: Android, Java, XML Layouts
+Manual testing across Android devices and emulators
 
-Backend: Java (Spring Boot), WebSockets, REST
+Tools and Technologies
+Frontend: Android SDK, Java, XML Layouts
+
+Backend: Spring Boot, Java, REST APIs, WebSockets
 
 Database: MySQL
 
-DevOps: GitHub Actions, Git, Trello
+Version Control and CI: Git, GitHub, GitHub Actions
 
-Contributors
-Grant Pierce
+Agile Workflow: Trello, Sprints, Code Reviews
 
-Jack
+## Contributors
 
-Danny
+- **Grant Pierce** (@GrantPierce94) – Full-stack Developer  
+  Led front-end Android development and designed five gameplay screens.  
+  Implemented core game mechanics (capture, battles, turn logic) and user authentication flow.  
+  Contributed to backend integration and security-focused features.
+
+- **Danny** – Backend Developer  
+  Developed Spring Boot RESTful API endpoints and managed MySQL schema.  
+  Focused on server-side game logic, user data persistence, and battle state storage.
+
+- **Jack** – Frontend Support  
+  Assisted with UI styling, navigation flow, and interaction design across Android activities.
+
 
 License
-MIT License
-
-
-
-
+This project is licensed under the MIT License. See the LICENSE file for more details.
